@@ -1,0 +1,26 @@
+{
+    "$id": "https://cosmonic.com/concordance/mutualcreditaccount/CreditReserved.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "CreditReserved",
+    "type": "object",
+    "properties": {
+      "accountNumber": {
+        "type": "string",
+        "description": "The account number"
+      },
+      "amount": {
+        "type": "integer",
+        "description": "The amount reserved"
+      },    
+      "entityId": {
+        "type": "string",
+        "description": "The ID of the entity"
+      },
+      "creditTransferId": {
+        "type": "string",
+        "description": "A unique ID identifying the credit transfer transaction"
+      }
+    },
+    "required": ["accountNumber", "amount", "entityId", "creditTransferId"]
+  }
+  

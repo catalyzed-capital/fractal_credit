@@ -1,0 +1,11 @@
+{
+    "command_type": "withdraw_credit", 
+    "key": "ABC123", 
+    "data": 
+        {
+            "accountNumber": "ABC123", 
+            "amount": 2000,
+            "note": "atm withdrawal",
+            "entityId": "CUSTBOB"
+        }
+}

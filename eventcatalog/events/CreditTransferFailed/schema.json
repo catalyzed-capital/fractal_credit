@@ -1,0 +1,33 @@
+{
+    "$id": "https://cosmonic.com/concordance/mutualcreditaccount/CreditTransferFailed.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "CreditTransferFailed",
+    "type": "object",
+    "properties": {        
+      "note": {
+        "type": "string",
+        "description": "An optional note describing the reason for failure"
+      },    
+      "creditTransferId": {
+        "type": "string",
+        "description": "A unique ID identifying the credit transfer transaction"
+      },
+      "targetRoutingNumber": {
+        "type": "string",
+        "description": "The routing number of the target mutualcredit"
+      },
+      "targetAccountNumber": {
+        "type": "string",
+        "description": "The account number of the target account"
+      }
+    },
+    "required": [
+      "accountNumber",
+      "amount",
+      "entityId",
+      "creditTransferId",
+      "targetRoutingNumber",
+      "targetAccountNumber"
+    ]
+  }
+  

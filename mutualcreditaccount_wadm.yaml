@@ -1,0 +1,76 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: mutualcredit-account
+  annotations:
+    version: v0.0.1
+    description: "A concordance Mutual Credit Account example"
+spec:
+  components:
+    - name: projector
+      type: actor
+      properties:
+        image: file://./projector/build/mutualcreditaccount_projector_s.wasm
+      traits:
+        - type: spreadscaler
+          properties:
+            replicas: 1            
+        - type: linkdef
+          properties:
+            target: concordance
+            values:
+              NAME: mutualcreditaccount_projector
+              ROLE: projector
+              INTEREST: account_created,credit_deposited,credit_released,credit_reserved,credit_withdrawn,credit_transfer_initiated
+        - type: linkdef
+          properties:
+            target: redis
+            values:
+              URL: redis://127.0.0.1:6379
+
+    - name: aggregate
+      type: actor
+      properties:
+        image:  file://./aggregate/build/mutualcreditaccount_aggregate_s.wasm
+      traits:
+        - type: spreadscaler
+          properties:
+            replicas: 1
+        - type: linkdef
+          properties:
+            target: concordance
+            values:
+              ROLE: aggregate
+              INTEREST: mutualcreditaccount
+              NAME: mutualcreditaccount
+              KEY: accountNumber
+              
+    - name: processmanager
+      type: actor
+      properties:
+        image: file://.process_manager/build/credittransfer_processmanager_s.wasm
+      traits:
+        - type: spreadscaler
+          properties:
+            replicas: 1
+        - type: linkdef
+          properties:
+            target: concordance
+            values:
+              ROLE: process_manager
+              KEY: creditTransferId
+              NAME: intermutualcreditxfer
+              INTEREST: '{"start":"credit_transfer_initiated","advance":["credit_reserved","credit_transfer_succeeded","credit_transfer_failed"],"stop":["credit_committed","credit_released"]}'
+    
+    - name: concordance
+      type: capability
+      properties:
+        contract: cosmonic:eventsourcing
+        image: registry.hub.docker.com/cosmonic/concordance:0.1.0
+        link_name: default
+
+    - name: redis
+      type: capability
+      properties:
+        image: wasmcloud.azurecr.io/kvredis:0.21.0
+        contract: wasmcloud:keyvalue

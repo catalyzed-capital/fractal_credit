@@ -1,0 +1,6 @@
+name = "mutualcreditaccount_aggregate"
+language = "rust"
+type = "actor"
+
+[actor]
+claims = ["cosmonic:eventsourcing", "wasmcloud:builtin:logging"]

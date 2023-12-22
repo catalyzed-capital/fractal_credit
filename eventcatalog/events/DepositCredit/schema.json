@@ -1,0 +1,30 @@
+{
+    "$id": "https://cosmonic.com/concordance/mutualcreditaccount/DepositCredit.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "DepositCredit",
+    "type": "object",
+    "properties": {
+      "accountNumber": {
+        "type": "string",
+        "description": "The account number"
+      },
+      "amount": {
+        "type": "integer",
+        "description": "The amount to deposit"
+      },
+      "note": {
+        "type": "string",
+        "description": "An optional note to be associated with the deposit"
+      },
+      "entityId": {
+        "type": "string",
+        "description": "The ID of the entity performing the deposit"
+      },
+      "transferId": {
+        "type": "string",
+        "description": "A unique ID identifying the transfer transaction if applicable"
+      }
+    },
+    "required": ["accountNumber", "amount", "entityId"]
+  }
+  

@@ -1,0 +1,45 @@
+{
+    "$id": "https://cosmonic.com/concordance/mutualcreditaccount/CreditTransferInitiated.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "CreditTransferInitiated",
+    "type": "object",
+    "properties": {
+      "accountNumber": {
+        "type": "string",
+        "description": "The source account number"
+      },
+      "amount": {
+        "type": "integer",
+        "description": "The amount to be transferred to the target account"
+      },
+      "note": {
+        "type": "string",
+        "description": "An optional note to be associated with the credit transfer"
+      },
+      "entityId": {
+        "type": "string",
+        "description": "The ID of the entity performing the transfer"
+      },
+      "creditTransferId": {
+        "type": "string",
+        "description": "A unique ID identifying the credit transfer transaction"
+      },
+      "targetRoutingNumber": {
+        "type": "string",
+        "description": "The routing number of the target mutualcredit"
+      },
+      "targetAccountNumber": {
+        "type": "string",
+        "description": "The account number of the target account"
+      }
+    },
+    "required": [
+      "accountNumber",
+      "amount",
+      "entityId",
+      "creditTransferId",
+      "targetRoutingNumber",
+      "targetAccountNumber"
+    ]
+  }
+  

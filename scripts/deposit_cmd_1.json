@@ -1,0 +1,11 @@
+{
+    "command_type": "deposit_credit", 
+    "key": "ABC123", 
+    "data": 
+        {
+            "accountNumber": "ABC123", 
+            "amount": 3000,
+            "note": "cash deposit",
+            "entityId": "CUSTBOB"
+        }
+}
